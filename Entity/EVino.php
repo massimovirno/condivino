@@ -4,22 +4,86 @@
  * @package Entity
  */
 class EVino {
-    public $ID; //Int
-    public $nome; //String
-	public $produttore; //String
-    public $denominazione; //String
-	public $paese; //String
-	public $regione; //String
-	public $descrizione; //String
-    public $vitigno;  // String
-    public $annata; // Int
-    public $grado; //Float
-	public $volume; //Float
-    public $colore;  //String
-    public $noteSensoriali;  //String
-    public $temperaturaServizio;  //Int
-    public $prezzo;  //Float	
+    /**
+     * @AttributeType int
+     */
+    public $vinoID;
+    
+    /**
+     * @AttributeType string
+     */
+    public $nome;
+   
+    /**
+     * @AttributeType string
+     */
+    public $produttore;
+    
+    /**
+     * @AttributeType string
+     */
+    public $denominazione;
+    
+    /**
+     * @AttributeType string
+     */
+    public $paese;
+    
+    /**
+     * @AttributeType string
+     */
+    public $regione;
+    
+    /**
+     * @AttributeType string
+     */
+    public $descrizione;
+    
+    /**
+     * @AttributeType string
+     */
+    public $vitigno;
+
+    /**
+     * @AttributeType int
+     */
+    public $annata;
+
+    /**
+     * @AttributeType float
+     */
+    public $grado;
+
+    /**
+     * @AttributeType float
+     */
+	public $volume;
+	
+	/**
+	 * @AttributeType string
+	 */
+	public $colore;
+	
+	/**
+	 * @AttributeType string
+	 */
+	public $noteSensoriali;
+
+	/**
+	 * @AttributeType int
+	 */
+	public $temperaturaServizio;
+
+	/**
+	 * @AttributeType float
+	 */
+	public $prezzo;	
+    
+    /**
+     * @AttributeType string
+     */
     public $etichetta;
+    
     /**
      * @AssociationType Entity.ECommento
      * @AssociationMultiplicity 0..*
@@ -28,16 +92,17 @@ class EVino {
     public $_commento = array();
 
     /**
+     * Aggiunge un commento all'array di commenti 
+     * relativi al vino
+     *
      * @access public
-     * @param Entity.ECommento aParameter
-     * @return boolean
-     * @ParamType aParameter Entity.ECommento
-     * @ReturnType boolean
+     * @return array()
+     * @ReturnType array()
      */
     public function addCommento(ECommento $commento) {
         array_push($this->_commento, $commento);
     }
-
+    
     /**
      * Restituisce la media dei voti per il vino
      *

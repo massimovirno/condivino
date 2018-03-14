@@ -36,6 +36,7 @@ class Fdb {
         global $config;
         $this->connect($config['mysql']['host'], $config['mysql']['password'], $config['mysql']['user'], $config['mysql']['database']);
     }
+    
     /**
      * @param string $host
      * @param string $user
@@ -56,8 +57,8 @@ class Fdb {
 
         $this->query('SET names \'utf8\'');
         return true;
-
     }
+
     /**
      * Effettua una query al database
      * @param string $query
@@ -72,6 +73,7 @@ class Fdb {
         else
             return true;
     }
+
     /**
      * Restituisce il risultato in un array associativo
      *
@@ -92,6 +94,7 @@ class Fdb {
         }
         return false;
     }
+    
     /**
      * Restituisce il risultato della query in un array
      *
@@ -109,6 +112,7 @@ class Fdb {
         }
         return false;
     }
+    
     /**
      * Restituisce un oggetto della classe Entity impostata in _return_class contentente i risultati della query
      *
@@ -124,6 +128,7 @@ class Fdb {
         } else
             return false;
     }
+    
     /**
      * Restiuisce un array di oggetti contenenti il risultato della query
      *
@@ -142,6 +147,7 @@ class Fdb {
         } else
             return false;
     }
+    
     /**
      * Effettua la connessione al database
      */
@@ -149,6 +155,7 @@ class Fdb {
         mysql_close($this->_connection);
         debug('Connessione al db chiusa');
     }
+    
     /**
      * Memorizza sul database lo stato di un oggetto
      *
@@ -182,6 +189,7 @@ class Fdb {
             return $return;
         }
     }
+    
     /**
      * Carica in un oggetto lo stato dal database
      *
@@ -195,6 +203,7 @@ class Fdb {
         $this->query($query);
         return $this->getObject();
     }
+
     /**
      * Cancella dal database lo stato di un oggetto
      *
@@ -209,6 +218,7 @@ class Fdb {
         unset($object);
         return $this->query($query);
     }
+
     /**
      * Aggiorna sul database lo stato di un oggetto
      *
@@ -232,6 +242,7 @@ class Fdb {
         $query='UPDATE `'.$this->_table.'` SET '.$fields.' WHERE `'.$this->_key.'` = \''.$arrayObject[$this->_key].'\'';
         return $this->query($query);
     }
+
     /**
      * Effettua una ricerca sul database
      *

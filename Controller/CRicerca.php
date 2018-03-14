@@ -61,7 +61,7 @@ class CRicerca {
 		if ($risultato!=false) {
             $array_risultato=array();
             foreach ($risultato as $item) {
-                $tmpVino=$FVino->load($item->id);
+                $tmpVino=$FVino->load($item->vinoID);
                  $array_risultato[]=array_merge(get_object_vars($tmpVino),array('media_voti'=>$tmpVino->getMediaVoti()));
                 //$array_risultato[]=array($tmpVino);				
             }

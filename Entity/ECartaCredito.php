@@ -4,14 +4,34 @@
  * @package Entity
  */
 class ECartaCredito {
+
+    /**
+     * @AttributeType string
+     */
+    public $cartaCreditoID;
+
+    /**
+     * @AttributeType string
+     */
     public $nome_titolare;
+
+    /**
+     * @AttributeType string
+     */
     public $cognome_titolare;
+
+    /**
+     * @AttributeType datetime
+     */
     public $data_scadenza;
-    public $numero;
+
+    /**
+     * @AttributeType string
+     */
     public $ccv;
 
     /**
-     * Controlla se la carta di credito è scaduta
+     * Controlla se la carta di credito e' scaduta
      * @access public
      * @return boolean
      */
@@ -24,10 +44,11 @@ class ECartaCredito {
         else
             return false;
     }
+
     /**
      * Imposta la data di scadenza nel formato AAAA-MM-DD
      * @access public
-     * @param $data String
+     * @param $data DateTime
      */
     public function setDataScadenza($data) {
         $anno='20'.substr($data, 3);
@@ -35,5 +56,6 @@ class ECartaCredito {
         $giorno='01';
         $this->data_scadenza="$anno-$mese-$giorno";
     }
+
 }
 ?>

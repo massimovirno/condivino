@@ -6,11 +6,12 @@
 class FEvento extends Fdb{
     public function __construct() {
         $this->_table='evento';
-        $this->_key='id';
+        $this->_key='eventoID';
         $this->_auto_increment=true;
         $this->_return_class='EEvento';
         USingleton::getInstance('Fdb');
     }
+    
     //public function store(EEvento & $evento){
     public function store($evento){
         //Location		
@@ -20,7 +21,7 @@ class FEvento extends Fdb{
         $evento->utente=$evento->_utente->username;	
 		
 		//Partecipanti
-		/**
+		/*
         $FEventoPartecipante=new FEventoPartecipante();
         $id = parent::store($evento);
         foreach ($evento->_partecipante as &$partecipante){

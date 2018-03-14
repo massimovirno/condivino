@@ -43,7 +43,7 @@ class CGestioneLocation {
 		if ($risultato!=false) {
             $array_risultato=array();
 			    foreach ($risultato as $item) {
-                $tmpEvento=$FEvento->load($item->id);
+                $tmpEvento=$FEvento->load($item->eventoID);
                 $array_risultato[]=array_merge(get_object_vars($tmpEvento),array('media_voti'=>$tmpEvento->getMediaVoti()));
                 //$array_risultato[]=array(get_object_vars($tmpEvento));
                 }

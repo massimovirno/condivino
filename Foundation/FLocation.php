@@ -6,11 +6,11 @@
 class FLocation extends Fdb {
     public function __construct() {
         $this->_table='location';
-        $this->_key='id';
+        $this->_key='locationID';
         $this->_auto_increment=true;
         $this->_return_class='ELocation';
-        USingleton::getInstance('Fdb');
-    }
+            USingleton::getInstance('Fdb');
+        }
 
     public function store( $object){
         $id = parent::store($object);

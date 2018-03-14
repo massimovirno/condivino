@@ -27,7 +27,7 @@ class CCreazioneEvento {
      * @return string
      */
     public function moduloEvento() {
-        //debug($registrato);
+        debug($registrato);
         $VCreazioneEvento=USingleton::getInstance('VCreazioneEvento');
         $VCreazioneEvento->setLayout('modulo');
         return $VCreazioneEvento->processaTemplate();

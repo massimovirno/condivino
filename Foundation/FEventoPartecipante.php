@@ -5,8 +5,8 @@
  */
 class FEventoPartecipante extends Fdb {
     public function __construct() {
-        $this->_table='eventopartecipante';
-        $this->_key='id';
+        $this->_table='eventoPartecipante';
+        $this->_key='eventoPartecipanteID';
         $this->_auto_increment=true;
         $this->_return_class='EEventoPartecipante';
         USingleton::getInstance('Fdb');
@@ -20,8 +20,6 @@ class FEventoPartecipante extends Fdb {
     public function store(EEventoPartecipante & $item) {
             
         // Event ID
-        
-        
         
         // Utente 
         $session=USingleton::getInstance('USession');

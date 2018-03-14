@@ -4,11 +4,21 @@
  * @package Entity
  */
 class ELocation {
-    public $id;
-	public $citta;
+
+    /**
+     * @AttributeType int
+     */
+    public $locationID;
+	
+    /**
+     * @@AttributeType string
+     */
+    public $citta;
+    
+    /**
+     * @@AttributeType string
+     */
     public $indirizzo;
 
-	// METODI
-  
 }
 ?>

@@ -4,17 +4,27 @@
  * @package Entity
  */
 class ECommento {
+    
 	/**
 	 * @AttributeType int
 	 */
-	public $id;
+	public $commentoID ;
+
 	/**
 	 * @AttributeType string
 	 */
 	public $testo;
+	
 	/**
 	 * @AttributeType float
 	 */
 	public $voto;
+
+	/**
+	 * @AssociationType Entity.EVino
+	 * @AssociationMultiplicity 1
+	 */
+	public $vinoID;
+	
 }
 ?>

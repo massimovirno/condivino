@@ -1,34 +1,33 @@
 <?php
 
-
 /**
  * @access public
  * @package Entity
  */
 class EEventoPartecipante {
+    
     /** 
-     * @var int
+     * @AttributeType int
      */
-    public $id;
-	/**
-     * @var int
+    public $eventoPartecipanteID;
+    
+    /**
+     * @AttributeType tinyint
      */
-    public $eventoID; 
-	/**
-         * username String
+    public $pagato;
+    
+    /**
      * @AssociationType Entity.EUtente
      * @AssociationMultiplicity 1
      */
-    public $partecipante;
-     /**
-     * @var int
+    public $partecipanteID;
+    
+        /**
+     * @AssociationType Entity.EEvento
+     * @AssociationMultiplicity 1
      */
-    public $pagato;
-	
-	// AGGIUNGERE METODI PAGAMENTO
-	// setPagato
-	
-	
+    public $eventoID;
+       
 	/**
      *
      * @param username String
@@ -36,6 +35,7 @@ class EEventoPartecipante {
     public function setPartecipante($username) {
         $this->_partecipante=$username;
     }
+    
     /**
      * Restituisce l'oggetto EUtente
      *
@@ -45,7 +45,7 @@ class EEventoPartecipante {
         return $this->_partecipante;
     }
 	
-/**
+    /**
      *
      * @param Id_evento int
      */

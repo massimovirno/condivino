@@ -5,74 +5,83 @@
  * @package Entity
  */
 class EEvento {
+    
     /**
      * @AttributeType int
      */
-    public $id;
+    public $eventoID;
+
     /**
-     * @AttributeType String
+     * @AttributeType string
      */
     public $nome;
-	/**
+    
+    /**
      * @AttributeType Datetime
      */
-	public $data; 
-	/**
-     * @AssociationType Entity.EUtente
-     * @AssociationMultiplicity 1
-     */
-    public $utente;
-	/**
-     * @AttributeType Datetime
-     */
-    public $data_chiusura;
-     /**
+	public $data_chiusura; 
+
+    /**
      * @AttributeType int
      */
     public $posti;
+
+    /**
+     * @AttributeType string
+     */
+    public $descBreve;
+    
+    /**
+     * @AttributeType string
+     */
+    public $descrizione;
+    
+    /**
+     * @AttributeType float
+     */
+    public $prezzo;
+
+	 /**
+     * @AttributeType string
+     */
+    public $categoria;	
+	
+	/**
+     * @AttributeType string
+     */
+    public $foto;  
+  
+	/**
+     * @AttributeType tinyint
+     */
+    public $pubblicato;
+	
+    /**
+     * @AssociationType Entity.EVino
+     * @AssociationMultiplicity 1
+     */
+    public $vinoID;
+    
+    /**
+     * @AssociationType Entity.EUtente
+     * @AssociationMultiplicity 1
+     */
+    public $utenteID;
+    
+    /**
+     * @AssociationType Entity.ELocation
+     * @AssociationMultiplicity 1
+     */
+    public $locationID;
+    
     /**
      * @AssociationType Entity.EEventoPartecipante
      * @AssociationMultiplicity 1..*
      * @AssociationKind Aggregation
      */
     public $_partecipante = array();
+    
     /**
-     * @AssociationType Entity.ELocation
-     * @AssociationMultiplicity 1
-     */
-    public $_location;
- 
-     /**
-     * @AttributeType String
-     */
-    public $descBreve;
-	
-	 /**
-     * @AttributeType String
-     */
-    public $descrizione;
-     
-	 /**
-     * @AttributeType Float
-     */
-    public $prezzo;
-
-	 /**
-     * @AttributeType String
-     */
-    public $categoria;	
-	
-	/**
-     * @AttributeType String
-     */
-    public $foto;  
-  
-	/**
-     * @var int
-     */
-    public $pubblicato;
-	
-   /**
      * @AssociationType Entity.ECommento
      * @AssociationMultiplicity 0..*
      * @AssociationKind Aggregation
@@ -83,42 +92,8 @@ class EEvento {
 	// METODI 
 
 	// RIVEDERE
-	/**
-     * @access public
-     * @return float
-     */
-    /**  
-	public function getNumeroPartecipanti() {
-        $num_part=0;
-        if (count($this->_partecipante)>0) {
-            foreach($this->_partecipante as $partecipante) {
-                $evento=$partecipante->getEvento();
-                $num_part += $libro->prezzo*$item->quantita;
-            }
-        }
-        return $num_part;
-    }
-	*/
-	
-	/**
-     * @access public
-     * @return float
-     */
     /**
-	public function getPrezzoTotale() {
-        $prezzo=0;
-        if (count($this->_item)>0) {
-            foreach($this->_item as $item) {
-                $libro=$item->getLibro();
-                $prezzo += $libro->prezzo*$item->quantita;
-            }
-        }
-        return $prezzo;
-    }
-	*/
-
-	
-    /**
+     * Imposta la data nel formato AAAA-MM-DD
      * @access public
      * @param $data string
      */
@@ -128,37 +103,43 @@ class EEvento {
         $giorno=substr($data, 0, 2);
         $this->data="$anno-$mese-$giorno";
     }
+    
     /**
+     * Imposta l'utente
      * @access public
      * @param $utente EUtente
      */
     public function setUtente(EUtente $utente) {
         $this->_utente=$utente;
     }
+    
     /** VALUTARE UTILIZZO
      * rimuovo l'item nella posizione $pos dell'array
-     *
      * @param int $pos
      */
     public function removeItem($pos) {
         unset($this->_item[$pos]);
         $this->_item=array_values($this->_item);
     }
+    
     /** restituisce l'utente creatore dell'evento
      * @return EUtente
      */
     public function getUtente() {
         return $this->_utente;
     }
+    
+    /** restituisce la media dei voti
+     * @return EUtente
+     */
     public function getMediaVoti() {
         $somma=0;
 		// FINTA!
-            return $somma;
+        return $somma;
     }
 	
-	 /**
+	/**
      * Restituisce il numero di partecipanti per evento
-     *
      * @access public
      * @return int
      * @ReturnType int
@@ -178,13 +159,14 @@ class EEvento {
             return false;
     }
 	 
-	 /**
-     *
+	/**
+     * Imposta la località dell'evento
      * @param ELocation $location
      */
     public function setLocation(ELocation $location) {
         $this->_location=$location;
     }
+    
    /**
      * Restituisce un array con i partecipanti
      *
@@ -195,5 +177,6 @@ class EEvento {
     public function getPartecipanti() {
         return ($this->_partecipante);
     }	
+
 }
 ?>

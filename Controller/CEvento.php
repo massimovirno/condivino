@@ -43,7 +43,7 @@ class CEvento {
 		if ($risultato!=false) {
             $array_risultato=array();
 			    foreach ($risultato as $item) {
-                $tmpEvento=$FEvento->load($item->id);
+                $tmpEvento=$FEvento->load($item->eventoID);
                 $array_risultato[]=array_merge(get_object_vars($tmpEvento),array('media_voti'=>$tmpEvento->getMediaVoti()));
                 //$array_risultato[]=array(get_object_vars($tmpEvento));
                 }
@@ -123,7 +123,8 @@ class CEvento {
     public function moduloPagamento() {
         $view = USingleton::getInstance('VEvento');
         $id_evento=$view->getIdEvento();
-	echo "ID_EVE_MOD_PAG";
+    
+        echo "ID_EVE_MOD_PAG";
         debug($id_evento);        
         
         
@@ -141,11 +142,9 @@ class CEvento {
         // DATI EVENTO
         $id_evento=$view->getIdEvento();
 	echo "ID_EVE_PAR";	
-
-		debug("ID_EVENTO"+$id_evento);
+        debug($id_evento);
         $FEvento=new FEvento();
         $evento=$FEvento->load($id_evento);
-		debug("EVENTO"+$evento);
 		$dati=get_object_vars($evento);
 	    $view->impostaDati('dati',$dati);
 		

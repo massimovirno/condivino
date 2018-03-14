@@ -6,14 +6,15 @@
 class FVino extends Fdb {
     public function __construct() {
         $this->_table='vino';
-        $this->_key='id';
+        $this->_key='vinoID';
         $this->_return_class='EVino';
         USingleton::getInstance('Fdb');
     }
-    public function store( $vino) {
+    
+    public function store($vino) {
         parent::store($vino);
         $FCommento=new FCommento();
-        $arrayCommentiEsistenti=$FCommento->loadCommenti($vino->id);
+        $arrayCommentiEsistenti=$FCommento->loadCommenti($vino->vinoID);
         if ($arrayCommentiEsistenti!=false) {
             foreach ($arrayCommentiEsistenti as $itemCommento) {
                 $FCommento->delete($itemCommento);
@@ -25,15 +26,16 @@ class FVino extends Fdb {
             $FCommento->store($commento);
         }
     }
+    
     public function load ($key) {
         $vino=parent::load($key);
         $FCommento=new FCommento();
-        $arrayCommenti=$FCommento->loadCommenti($vino->id);
+        $arrayCommenti=$FCommento->loadCommenti($vino->vinoID);
         $vino->_commento=$arrayCommenti;
         return $vino;
     }
 
-    public function delete( & $vino) {
+    public function delete(& $vino) {
         $arrayCommenti=& $vino->getCommenti();
         $FCommento= new FCommento();
         foreach ($arrayCommenti as &$commento) {
