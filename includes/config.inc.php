@@ -10,14 +10,14 @@ $config['smarty']['template_dir'] =
 //'/home/cicerone/public_html/webprog/comi/templates/main/template/';
 '/templates/main/template/';
 $config['smarty']['compile_dir'] =
-'C:/xampp/htdocs/comi/templates/main/templates_c/';
+'C:/xampp/htdocs/condivino/templates/main/templates_c/';
 $config['smarty']['config_dir'] =
 '/templates/main/configs/';
 $config['smarty']['cache_dir'] =
 '/templates/main/cache/';
 
-$config['debug']=false;
-//$config['debug']=true;
+//$config['debug']=false;
+$config['debug']=true;
 
 $config['mysql']['user'] = 'root';
 $config['mysql']['password'] = '';
@@ -33,7 +33,7 @@ $config['smtp']['password'] = '';
 
 $config['email_webmaster']='webmaster@comi.it';
 //$config['url_bookstore']='http://localhost/bookstore2/';
-$config['url_comi']='http://localhost/comi';
+$config['url_comi']='http://localhost/condivino';
 
 
 function debug($var){

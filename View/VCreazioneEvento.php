@@ -1,46 +1,6 @@
 <?php
-/**
- * File VHome.php contenente la classe VHome
- *
- * @package view
- */
-/**
- * Classe VHome, estende la classe view del package System e gestisce la visualizzazione e formattazione del sito, inoltre imposta i principali contenuti della pagina, suddivisi in contenuti principali (main_content) e contenuti della barra laterale (side_content)
- *
- * @package View
- */
-class VCreazioneEvento extends View {
-    /**
-     * @var string $_layout
-     */
-    private $_layout='default';
-    /**
-     * restituisce la password passata tramite GET o POST
-     *
-     * @return mixed
-     */
-    public function getPassword() {
-        if (isset($_REQUEST['password']))
-            return $_REQUEST['password'];
-        else
-            return false;
-    }
-    /**
-     * restituisce la username passata tramite GET o POST
-     *
-     * @return mixed
-     */
-    public function getUsername() {
-        if (isset($_REQUEST['username']))
-            return $_REQUEST['username'];
-        else
-            return false;
-    }
-    /**
-     * @return mixed
-     */
-    public function getTask() {
-        if (isset($_REQUEST['task']))
+public function getTask() {
+    if (isset($_REQUEST['task']))
             return $_REQUEST['task'];
         else
             return false;

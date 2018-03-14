@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2015-09-20 23:11:19
+<?php /* Smarty version 2.6.26, created on 2018-02-28 18:52:10
          compiled from home_default.tpl */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -224,8 +224,8 @@ $this->_sections['j']['last']       = ($this->_sections['j']['iteration'] == $th
     
     <!-- D. FOOTER -->      
     <div class="footer">
-      <p>Copyright &copy; 2015 CondiVino&nbsp;&nbsp;|&nbsp;&nbsp;All Rights Reserved</p>
-      <p class="credits">Layout design by <a href="http://1234.info/" title="Designer Homepage">1234.info</a> | Modified by <a href="http://lamjex.com" title="Modifyer Homepage">Alessandro Verzicco</a> | <a href="http://validator.w3.org/check?uri=referer" title="Validate XHTML code">XHTML 1.0</a> | <a href="http://jigsaw.w3.org/css-validator/" title="Validate CSS code">CSS 2.0</a></p>
+      <p>Copyright &copy; 2018 CondiVino&nbsp;&nbsp;|&nbsp;&nbsp;All Rights Reserved</p>
+      <p class="credits">Layout design and modified by Massimo Virno e Antonio Martone</a> | <a href="http://validator.w3.org/check?uri=referer" title="Validate XHTML code">XHTML 1.0</a> | <a href="http://jigsaw.w3.org/css-validator/" title="Validate CSS code">CSS 2.0</a></p>
     </div>
     <div class="corner-page-bottom"></div>        
   </div> 
