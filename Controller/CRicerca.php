@@ -1,90 +1,95 @@
 <?php
 /**
+ * ============================================================================
  * @access public
  * @package Controller
+ * ============================================================================
+ * Class CRicerca - Ricerca
+ * ============================================================================
+ * lista()             - Seleziona sul database i vini per mostrarli all'utente 
+ *                       e li filtra in base alle variabili passate
+ * dettagli()          - Mostra i dettagli di un vino, con la descrizione 
+ *                       completa, i commenti e il form per l'invio di commenti. 
+ *                       solo per utenti registrati
+ * inserisciCommento() - Inserisce un commento nel database collegandolo al 
+ *                       relativo vino
+ * smista()            - Smista le richieste ai vari metodi
+ * ============================================================================
  */
 class CRicerca {
+
     /**
      * @var int
      */
-    private $_libri_per_pagina=6;
+    private $_bottiglie_per_pagina=6;
+
     /**
-     * Seleziona sul database i libri con id più alto e li mostra nella pagina principale
-     *
-     * @return string contenuto del template processato
-     
-    public function ultimiArrivi() {
+     * ========================================================================
+     * @name lista()
+     * @return string
+     * ========================================================================
+     * Seleziona sul database i vini per mostrarli all'utente e li filtra 
+     * in base alle variabili passate
+     * ========================================================================
+     */
+    public function lista(){
+        
+        //ricava l'istanza univoca dell'oggetto VRicerca
         $view = USingleton::getInstance('VRicerca');
-        $this->_libri_per_pagina=4;
+        
+        //Crea un nuovo oggetto FVino
         $FVino=new FVino();
-        $limit=$view->getPage()*$this->_libri_per_pagina.','.$this->_libri_per_pagina;
-        $num_risultati=count($FVino->search());
-        $pagine = ceil($num_risultati/$this->_libri_per_pagina);
-        $risultato=$FVino->search(array(), '`ISBN` DESC', $limit);
+
+        //definisce l'array $parametri
+        $parametri=array();
+
+        //impostazioni per la visualizzazione delle bottiglie per pagina
+        $limit=$view->getPage()*$this->_bottiglie_per_pagina.','.$this->_bottiglie_per_pagina;
+        
+        //ricava il numero delle bottiglie trovate nel Database e crea un array
+        //con tutti i dati delle bottiglie trovate
+        $num_risultati=count($FVino->search($parametri));
+        
+        //numero pagine = numero bottiglie trovate/numero bottiglie per pagina (6)
+        $pagine = ceil($num_risultati/$this->_bottiglie_per_pagina);
+        
+        //array dei vini trovati in base ai criteri di ricerca
+        $risultato=$FVino->search($parametri, '', $limit);
+
+        // Recupera media voti
         if ($risultato!=false) {
             $array_risultato=array();
             foreach ($risultato as $item) {
-                $tmpVino=$FVino->load($item->ISBN);
-                $array_risultato[]=array_merge(get_object_vars($tmpVino),array('media_voti'=>$tmpVino->getMediaVoti()));
-            }
-        }
-        $view->impostaDati('pagine',$pagine);
-        $view->impostaDati('task','ultimi_arrivi');
-        $view->impostaDati('dati',$array_risultato);
-        return $view->processaTemplate();
-    }
-	*/
-    /**
-     * Seleziona sul database i libri per mostrarli all'utente e li filtra 
-     * in base alle variabili passate
-     * es categorie o stringhe di ricerca
-     *
-     * @return string
-     */
-    public function lista(){
-        $view = USingleton::getInstance('VRicerca');
-        $FVino=new FVino();
-        $parametri=array();
-        //$categoria=$view->getCategoria();
-        //$parola=$view->getParola();
-        //if ($categoria!=false){
-        //    $parametri[]=array('categoria','=',$categoria);
-        //}
-        //if ($parola!=false){
-        //    $parametri[]=array('descrizione','LIKE','%'.$parola.'%');
-        //}
-        $limit=$view->getPage()*$this->_libri_per_pagina.','.$this->_libri_per_pagina;
-        $num_risultati=count($FVino->search($parametri));
-        $pagine = ceil($num_risultati/$this->_libri_per_pagina);
-        $risultato=$FVino->search($parametri, '', $limit);
-        //echo "XXXXXX-".$num_risultati;
-		if ($risultato!=false) {
-            $array_risultato=array();
-            foreach ($risultato as $item) {
-                $tmpVino=$FVino->load($item->id);
+                //carica i dati del vino con chiave vinoID
+                $tmpVino=$FVino->load($item->vinoID);
                  $array_risultato[]=array_merge(get_object_vars($tmpVino),array('media_voti'=>$tmpVino->getMediaVoti()));
-                //$array_risultato[]=array($tmpVino);				
             }
         }
+
         $view->impostaDati('pagine',$pagine);
         $view->impostaDati('task','lista');
-        //$view->impostaDati('parametri','categoria='.$categoria.'&stringa='.$parola);
         $view->impostaDati('dati',$array_risultato);
         return $view->processaTemplate();
     }
+    
     /**
-     * Mostra i dettagli di un libro, con la descrizione completa, i commenti e il form per l'invio di commenti, solo per utenti registrati
-     *
+     * ========================================================================
+     * @name dettagli
      * @return string
+     * ========================================================================
+     * Mostra i dettagli di un vino, con la descrizione completa, i commenti e 
+     * il form per l'invio di commenti.
+     * Solo per utenti registrati
+     * ========================================================================
      */
     public function dettagli() {
         $view = USingleton::getInstance('VRicerca');
-        $id_libro=$view->getIdLibro();
+        $id_Vino=$view->getIdVino();
         $FVino=new FVino();
-        $libro=$FVino->load($id_libro);
-        $commenti=$libro->getCommenti();
+        $vino=$FVino->load($id_Vino);
+        $commenti=$vino->getCommenti();
         $arrayCommenti=array();
-        $dati=get_object_vars($libro);
+        $dati=get_object_vars($vino);
 
 	if ( is_array( $commenti )  ) {
 	    foreach ($commenti as $commento){
@@ -97,16 +102,21 @@ class CRicerca {
 
         $session=USingleton::getInstance('USession');
         $username=$session->leggi_valore('username');
-        if ($username!=false)
+        if ($username != false) {
             $view->setLayout('dettagli_registrato');
-        else
+        } else {
             $view->setLayout('dettagli');
+        }
         return $view->processaTemplate();
     }
+
     /**
-     * Inserisce un commento nel database collegandolo al relativo libro
-     *
+     * ========================================================================
+     * @name inserisciCommento()
      * @return string
+     * ========================================================================
+     * Inserisce un commento nel database collegandolo al relativo vino
+     * ========================================================================
      */
     public function inserisciCommento() {
         $session=USingleton::getInstance('USession');
@@ -114,7 +124,6 @@ class CRicerca {
         if ($username!=false) {
             $view = USingleton::getInstance('VRicerca');
             $ECommento = new ECommento();
-            $ECommento->libroISBN=$view->getIdLibro();
             $ECommento->voto=$view->getVoto();
             $ECommento->testo=$view->getCommento();
             $FCommento=new FCommento();
@@ -122,13 +131,20 @@ class CRicerca {
             return $this->dettagli();
         }
     }
+
     /**
-     * Smista le richieste ai vari metodi
-     *
+     * ========================================================================
+     * @name smista()
      * @return mixed
+     * ========================================================================
+     * Smista le richieste ai vari Controller   
+     * ========================================================================
      */
     public function smista() {
-        $view=USingleton::getInstance('VRegistrazione');
+        
+        //ricava l'istanza univoca dell'oggetto VRegistrazione
+        $view=USingleton::getInstance('VRicerca');
+
         switch ($view->getTask()) {
             case 'ultimi_arrivi':
                 return $this->ultimiArrivi();

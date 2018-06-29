@@ -1,7 +1,11 @@
 <?php
 /**
+ * ============================================================================
  * @access public
  * @package Foundation
+ * ============================================================================
+ * Class FUtente - accesso ai dati relativi agli Utenti presenti sul DB
+ * ============================================================================
  */
 class FUtente extends Fdb{
     public function __construct() {
@@ -11,5 +15,4 @@ class FUtente extends Fdb{
         USingleton::getInstance('Fdb');
     }
 }
-
 ?>

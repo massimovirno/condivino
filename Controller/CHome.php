@@ -1,35 +1,67 @@
 <?php
 /**
+ * ============================================================================
  * @access public
  * @package Controller
+ * ============================================================================
+ * Classe CHome - Imposta la pagina Home e che smista le richieste ai vari 
+ *                controller
+ * ============================================================================
+ * impostaPagina() - imposta e visualizza la pagina Home
+ * smista()        - Smista le richieste ai vari controller
+ * ============================================================================
  */
 class CHome {
+    
     /**
-     * Imposta la pagina, controlla l'autenticazione
+     * ========================================================================
+     * @name impostaPagina()
+     * ========================================================================
+     * imposta e visualizza la pagina
+     * ========================================================================
      */
-    public function impostaPagina () {
+   
+    public function impostaPagina() {
+
+        //ricava l'istanza univoca dell'oggetto CRegistrazione
         $CRegistrazione=USingleton::getInstance('CRegistrazione');
+
+        //Controlla se l'utente è registrato ed autenticato
         $registrato=$CRegistrazione->getUtenteRegistrato();
-        $VHome= USingleton::getInstance('VHome');
+
+        //ricava l'istanza univoca dell'oggetto VHome
+        $VHome=USingleton::getInstance('VHome');
+
+        //Smista le richieste ai vari controller
         $contenuto=$this->smista();
-        //$fvino=USingleton::getInstance('FVino');
-        //$categorie=$fvino->getCategorie();
-        //$VHome->impostaTastiCategorie($categorie);
+
+        //imposta il contenuto della pagina
         $VHome->impostaContenuto($contenuto);
+        
+        //distingue i contenuti in base allo stato dell'utente
         if ($registrato) {
             $VHome->impostaPaginaRegistrato();
         } else {
             $VHome->impostaPaginaGuest();
         }
+        
+        //visualizza pagina
         $VHome->mostraPagina();
     }
+    
     /**
+     * ========================================================================
+     * @ smista()
+     * @return mixed 
+     * ========================================================================
      * Smista le richieste ai vari controller
-     *
-     * @return mixed
+     * ========================================================================
      */
     public function smista() {
+
+        //ricava l'istanza univoca dell'oggetto VHome
         $view=USingleton::getInstance('VHome');
+
         switch ($view->getController()) {
             case 'registrazione':
                 $CRegistrazione=USingleton::getInstance('CRegistrazione');
@@ -45,10 +77,8 @@ class CHome {
                 return $CRicerca->smista();
             default:
                 $CRicerca=USingleton::getInstance('CRicerca');
-            //    return $CRicerca->ultimiArrivi();
-			return $CRicerca->smista();
+		return $CRicerca->smista();
         }
     }
 }
-
 ?>

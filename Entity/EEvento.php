@@ -1,172 +1,178 @@
 <?php
 
 /**
+ * ============================================================================
  * @access public
  * @package Entity
+ * ============================================================================
+ * Class EEvento - oggetto Evento del dominio 
+ * ============================================================================
+ * setData($data)                   - Imposta la data nel formato AAAA-MM-DD
+ * setUtente(EUtente $utente)       - Imposta l'utente
+ * removeItem($pos)                 - rimuove l'item nella posizione $pos dell'array
+ * getUtente()                      - restituisce l'utente creatore dell'evento
+ * getMediaVoti()                   - restituisce la media dei voti
+ * getNumeroPartecipanti()          - restituisce il numero dei partecipanti
+ * setLocation(ELocation $location) - imposta la location dell'evento
+ * getPartecipanti()                - Restituisce un array con i partecipanti
+ * ============================================================================
  */
 class EEvento {
+    
     /**
      * @AttributeType int
      */
-    public $id;
+    public $eventoID;
+
     /**
-     * @AttributeType String
+     * @AssociationType Entity.EVino
+     * @AssociationMultiplicity 1
+     * @AttributeType int
+     */
+    public $vinoID_FK;
+
+    /**
+     * @AssociationType Entity.ELocation
+     * @AssociationMultiplicity 1
+     * @AttributeType int
+     */
+    public $locationID_FK;
+    /**
+     * @AttributeType string
      */
     public $nome;
-	/**
+    
+    /**
      * @AttributeType Datetime
      */
-	public $data; 
-	/**
-     * @AssociationType Entity.EUtente
-     * @AssociationMultiplicity 1
-     */
-    public $utente;
-	/**
-     * @AttributeType Datetime
-     */
-    public $data_chiusura;
-     /**
+    public $data_chiusura; 
+
+    /**
      * @AttributeType int
      */
     public $posti;
+
+    /**
+     * @AttributeType string
+     */
+    public $descBreve;
+    
+    /**
+     * @AttributeType string
+     */
+    public $descrizione;
+    
+    /**
+     * @AttributeType float
+     */
+    public $prezzo;
+
+    /**
+     * @AttributeType string
+     */
+    public $foto;  
+  
+	/**
+     * @AttributeType tinyint
+     */
+    public $pubblicato;
+	
     /**
      * @AssociationType Entity.EEventoPartecipante
      * @AssociationMultiplicity 1..*
      * @AssociationKind Aggregation
      */
     public $_partecipante = array();
+    
     /**
-     * @AssociationType Entity.ELocation
-     * @AssociationMultiplicity 1
-     */
-    public $_location;
- 
-     /**
-     * @AttributeType String
-     */
-    public $descBreve;
-	
-	 /**
-     * @AttributeType String
-     */
-    public $descrizione;
-     
-	 /**
-     * @AttributeType Float
-     */
-    public $prezzo;
-
-	 /**
-     * @AttributeType String
-     */
-    public $categoria;	
-	
-	/**
-     * @AttributeType String
-     */
-    public $foto;  
-  
-	/**
-     * @var int
-     */
-    public $pubblicato;
-	
-   /**
      * @AssociationType Entity.ECommento
      * @AssociationMultiplicity 0..*
      * @AssociationKind Aggregation
      */
-	 // DA IMPLEMENTARE
+    // DA IMPLEMENTARE
     //public $_commento = array();
  	
-	// METODI 
-
-	// RIVEDERE
-	/**
-     * @access public
-     * @return float
-     */
-    /**  
-	public function getNumeroPartecipanti() {
-        $num_part=0;
-        if (count($this->_partecipante)>0) {
-            foreach($this->_partecipante as $partecipante) {
-                $evento=$partecipante->getEvento();
-                $num_part += $libro->prezzo*$item->quantita;
-            }
-        }
-        return $num_part;
-    }
-	*/
-	
-	/**
-     * @access public
-     * @return float
-     */
+    // METODI 
+    // RIVEDERE
+    
     /**
-	public function getPrezzoTotale() {
-        $prezzo=0;
-        if (count($this->_item)>0) {
-            foreach($this->_item as $item) {
-                $libro=$item->getLibro();
-                $prezzo += $libro->prezzo*$item->quantita;
-            }
-        }
-        return $prezzo;
-    }
-	*/
-
-	
-    /**
-     * @access public
-     * @param $data string
+     * ========================================================================
+     * @name setData($data)
+     * @param string $data 
+     * ========================================================================
+     * Imposta la data nel formato AAAA-MM-DD
+     * ========================================================================
      */
-    public function setData($data) {
+public function setData($data) {
         $anno=substr($data, 6);
         $mese=substr($data, 3, 2);
         $giorno=substr($data, 0, 2);
         $this->data="$anno-$mese-$giorno";
     }
+    
     /**
-     * @access public
-     * @param $utente EUtente
+     * ========================================================================
+     * @name setUtente(EUtente $utente)
+     * @param EUtente $utente 
+     * ========================================================================
+     * Imposta l'utente
+     * ========================================================================
      */
     public function setUtente(EUtente $utente) {
         $this->_utente=$utente;
     }
-    /** VALUTARE UTILIZZO
-     * rimuovo l'item nella posizione $pos dell'array
-     *
+    
+    /**
+     * ========================================================================
+     * @name removeItem($pos)
      * @param int $pos
+     * ========================================================================
+     * rimuove l'item nella posizione $pos dell'array
+     * ========================================================================
      */
     public function removeItem($pos) {
         unset($this->_item[$pos]);
         $this->_item=array_values($this->_item);
     }
-    /** restituisce l'utente creatore dell'evento
+    
+    /**
+     * ========================================================================
+     * @name getUtente()
      * @return EUtente
+     * ========================================================================
+     * restituisce l'utente creatore dell'evento
+     * ========================================================================
      */
     public function getUtente() {
         return $this->_utente;
     }
+    
+    /**
+     * ========================================================================
+     * @name getMediaVoti()
+     * @return float $somma
+     * ========================================================================
+     * restituisce la media dei voti
+     * ========================================================================
+     */
     public function getMediaVoti() {
         $somma=0;
 		// FINTA!
-            return $somma;
+        return $somma;
     }
 	
-	 /**
+    /**
+     * ========================================================================
+     * @name getNumeroPartecipanti()
+     * @return int $totale
+     * ========================================================================
      * Restituisce il numero di partecipanti per evento
-     *
-     * @access public
-     * @return int
-     * @ReturnType int
+     * ========================================================================
      */
     public function getNumeroPartecipanti() {
         $totale=0;
         $partecipanti=count($this->_partecipante);
-        if ($partecipanti>1) {
+        if ($partecipanti > 1) {
             foreach ($this->partecipante as $partecipante) {
                 $totale++;
             }
@@ -174,23 +180,30 @@ class EEvento {
         }
         //elseif (isset($this->_commento[0]->voto))
         //    return $this->_commento[0]->voto;
-        else
+        else {
             return false;
+        }
     }
 	 
-	 /**
-     *
+    /**
+     * ========================================================================
+     * @name setLocation(ELocation $location)
      * @param ELocation $location
+     * ========================================================================
+     * imposta la location dell'evento
+     * ========================================================================
      */
     public function setLocation(ELocation $location) {
         $this->_location=$location;
     }
-   /**
-     * Restituisce un array con i partecipanti
-     *
-     * @access public
+    
+    /**
+     * ========================================================================
+     * @name getPartecipanti()
      * @return array
-     * @ReturnType array
+     * ========================================================================
+     * Restituisce un array con i partecipanti
+     * ========================================================================
      */
     public function getPartecipanti() {
         return ($this->_partecipante);

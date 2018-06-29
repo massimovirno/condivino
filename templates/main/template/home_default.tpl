@@ -91,21 +91,21 @@
       <!-- Navigation item -->
       <ul>
         <li><a href="index.php">Home</a></li>
-		<li><a href="index.php?controller=evento&task=lista">Eventi</a></li>
-                <li><a href="index.php?controller=creazioneevento&task=creaevento">Crea Evento</a></li>
+        <li><a href="index.php?controller=evento&task=lista">Eventi</a></li>
+        <li><a href="index.php?controller=creazioneevento&task=creaevento">Crea Evento</a></li>
         <li><a href="index.php?controller=ricerca&task=lista">Vini</a></li>
-		<li><a>Gestione</a>
-                    <ul>
-                        		<li><a href="index.php?controller=creazioneevento&task=creaevento">Creazione Evento</a></li>
-								<li><a href="index.php?controller=gestLocation&task=lista">Location</a></li>
-								<li><a href="index.php?controller=ricerca&task=lista">Carta di credito</a></li>
-                    </ul>
+        <li><a>Gestione</a>
+            <ul>
+                <li><a href="index.php?controller=creazioneevento&task=creaevento">Creazione Evento</a></li>
+                <li><a href="index.php?controller=gestLocation&task=lista">Location</a></li>
+                <li><a href="index.php?controller=ricerca&task=lista">Carta di credito</a></li>
+            </ul>
         </li>
-		<li><a href="index.php?controller=ricerca&task=lista">Amministrazione</a>
-                    <ul>
-                        		<li><a href="index.php?controller=adminEventi&task=lista">Eventi</a></li>
-								<li><a href="index.php?controller=adminCartaCredito&task=lista">Carta di credito</a></li>
-                    </ul>
+        <li><a href="index.php?controller=ricerca&task=lista">Amministrazione</a>
+            <ul>
+                <li><a href="index.php?controller=adminEventi&task=lista">Eventi</a></li>
+                <li><a href="index.php?controller=adminCartaCredito&task=lista">Carta di credito</a></li>
+            </ul>
         </li>
 	  </ul>                       
     </div>    
@@ -167,8 +167,8 @@
     
     <!-- D. FOOTER -->      
     <div class="footer">
-      <p>Copyright &copy; 2015 CondiVino&nbsp;&nbsp;|&nbsp;&nbsp;All Rights Reserved</p>
-      <p class="credits">Layout design by <a href="http://1234.info/" title="Designer Homepage">1234.info</a> | Modified by <a href="http://lamjex.com" title="Modifyer Homepage">Alessandro Verzicco</a> | <a href="http://validator.w3.org/check?uri=referer" title="Validate XHTML code">XHTML 1.0</a> | <a href="http://jigsaw.w3.org/css-validator/" title="Validate CSS code">CSS 2.0</a></p>
+      <p>Copyright &copy; 2018 CondiVino&nbsp;&nbsp;|&nbsp;&nbsp;All Rights Reserved</p>
+      <p class="credits">Layout design and modified by Massimo Virno e Antonio Martone</a> | <a href="http://validator.w3.org/check?uri=referer" title="Validate XHTML code">XHTML 1.0</a> | <a href="http://jigsaw.w3.org/css-validator/" title="Validate CSS code">CSS 2.0</a></p>
     </div>
     <div class="corner-page-bottom"></div>        
   </div> 

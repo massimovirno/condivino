@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.26, created on 2018-06-26 20:40:50
+         compiled from creazioneevento_conferma_creazione.tpl */ ?>
     <a id="anchor-heading-noicon-1"></a>
     <div class="corner-content-1col-top"></div>
     <div class="content-1col-nobox">

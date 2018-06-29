@@ -1,7 +1,7 @@
 <?php
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * La funzione __autoload() è richiamata automaticamente se si cerca di
+ * utilizzare una classe o una interfaccia che non è stata ancora definita
 */
 function __autoload($class_name) {
     switch ($class_name[0]) {

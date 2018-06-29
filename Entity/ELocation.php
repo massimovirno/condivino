@@ -1,14 +1,27 @@
 <?php
 /**
+ * ============================================================================
  * @access public
  * @package Entity
+ * ============================================================================
+ * Class ELocation - oggetto ELocation del dominio 
+ * ============================================================================
  */
 class ELocation {
-    public $id;
-	public $citta;
-    public $indirizzo;
 
-	// METODI
-  
+    /**
+     * @AttributeType int
+     */
+    public $locationID;
+	
+    /**
+     * @@AttributeType string
+     */
+    public $citta;
+    
+    /**
+     * @@AttributeType string
+     */
+    public $indirizzo;
 }
 ?>

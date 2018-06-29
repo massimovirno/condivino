@@ -1,24 +1,27 @@
 <?php
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * config.inc.php - imposta le variabili per l'applicazione
+ * - smarty             template 
+ * - debug              abilita/disabilita il debug
+ * - MySQL              impostazioni per MySQL
+ * - smtp               per l'invio di email
+ * - email_webmaster    email del webmaster
+ * - url_condivino      url di accesso a condivino
  */
 
 global $config;
 
-$config['smarty']['template_dir'] =
-//'/home/cicerone/public_html/webprog/comi/templates/main/template/';
-'/templates/main/template/';
-$config['smarty']['compile_dir'] =
-'C:/xampp/htdocs/comi/templates/main/templates_c/';
-$config['smarty']['config_dir'] =
-'/templates/main/configs/';
-$config['smarty']['cache_dir'] =
-'/templates/main/cache/';
+// template smarty
+$config['smarty']['template_dir'] = './templates/main/template/';
+$config['smarty']['compile_dir'] = './templates/main/templates_c/';
+$config['smarty']['config_dir'] = './templates/main/configs/';
+$config['smarty']['cache_dir'] = './templates/main/cache/';
 
+// abilita/disabilita il debug
 $config['debug']=false;
 //$config['debug']=true;
 
+// impostazioni per MySQL
 $config['mysql']['user'] = 'root';
 $config['mysql']['password'] = '';
 $config['mysql']['host'] = 'localhost';
@@ -32,10 +35,9 @@ $config['smtp']['username'] = '';
 $config['smtp']['password'] = '';
 
 $config['email_webmaster']='webmaster@comi.it';
-//$config['url_bookstore']='http://localhost/bookstore2/';
-$config['url_comi']='http://localhost/comi';
+$config['url_condivino']='http://localhost/condivino';
 
-
+// istruzioni di debug
 function debug($var){
     global $config;
     if ($config['debug']){

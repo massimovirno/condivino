@@ -4,31 +4,29 @@
  * @access public
  * @package Foundation
  * ============================================================================
- * Class FLocation - accesso ai dati relativi alle Location presenti sul DB
+ * Class FPagamento - accesso ai dati relativi ai Pagamenti presenti sul DB
  * ============================================================================
  * store($object) - Menorizza sul DB lo stato dell'oggetto FLocation
  * ============================================================================
  */
-class FLocation extends Fdb {
+class FPagamento extends Fdb{
     public function __construct() {
-        $this->_table='location';
-        $this->_key='locationID';
-        $this->_auto_increment=true;
-        $this->_return_class='ELocation';
-            USingleton::getInstance('Fdb');
+        $this->_table='pagamento';
+        $this->_key='numero_pagaamento';
+        $this->_return_class='EPagamento';
+        USingleton::getInstance('Fdb');
     }
 
     /**
      * ========================================================================
-     * @name store($object)
-     * @param string $object
+     * @name store($carta)
+     * @param string $carta
      * ========================================================================
-     * Menorizza sul DB lo stato dell'oggetto FLocartion
+     * Menorizza sul DB lo stato dell'oggetto FPagamento
      * ========================================================================
      */
-    public function store($object){
-        $id = parent::store($object);
-        $object->id=$id;
-    }
+    public function store($carta){
+        parent::store($carta);
+    }	
 }
 ?>

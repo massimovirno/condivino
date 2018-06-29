@@ -20,4 +20,4 @@ Il tuo codice di attivazione e': {$codice_attivazione}
 In caso di problemi con la registrazione contatta un membro del nostro staff all'indirizzo: {$email_webmaster}
 
 Saluti, lo staff di
-BookStore
+Condivino
