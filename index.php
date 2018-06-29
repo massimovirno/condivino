@@ -1,11 +1,22 @@
 <?php
 /*
- * Effettuo il redirect a main/index.php
+ * ============================================================================
+ * @access public
+ * ============================================================================
+ * index.php
+ * ============================================================================
  */
+
+//la funzione __autoload() è richiamata automaticamente se si cerca di 
+//utilzzare una classe o una interfaccia non ancora definita
 require_once 'includes/autoload.inc.php';
+
+//imposta le variabili per l'applicazione
 require_once 'includes/config.inc.php';
 
+//ricava l'istanza univoca dell'oggetto CHome
 $CHome=USingleton::getInstance('CHome');
-$CHome->impostaPagina();
 
+//Imposta la pagina Home e smista la richiesta ad un controller
+$CHome->impostaPagina();
 ?>
